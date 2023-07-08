@@ -15,12 +15,11 @@ body {
 }
 
 .container {
-    max-width:900px;
-    margin:5vh auto 0;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* spacing */
-section:not(:last-child) {margin-bottom:4rem;}
 :is(h1, h2, h3, p):not(:last-child) {margin-bottom:2.5rem;}
 
 /* text */
@@ -29,3 +28,6 @@ h2 {font-size:2.5rem; border-bottom:1px solid #dee2e6; padding-bottom:10px;}
 p {font-size:1.8rem;}
 
 /* CSS here */
+section {
+    height: 100vh;
+}

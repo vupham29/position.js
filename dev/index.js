@@ -14,3 +14,10 @@ const dataDescriptions = document.querySelectorAll('[data-description]');
 // update information
 dataTitles.forEach(e => e.innerHTML = packageInfo["project-name"]);
 dataDescriptions.forEach(e => e.innerHTML = packageInfo.description);
+
+// code
+window.instance = Position.create({
+    onUpdate: (self) => {
+        console.log(self);
+    }
+});
