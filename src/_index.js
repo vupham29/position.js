@@ -4,7 +4,7 @@ import './_index.scss';
 // script
 import {validateTarget} from "./helpers";
 import {uid} from "./utils";
-import {handleMouseMove} from "./move";
+import {handleMouseMove, initMouseMove} from "./move";
 import {handleScroll} from "./scroll";
 
 /**
@@ -16,19 +16,12 @@ class Position{
         this.instances = [];
     }
 
-    create(options = {
-               // dev mode
-               debug: false,
-
-               // callback
-               onUpdate: null,
-           }
-    ){
+    create(options){
         const instance = {
             id: uid('position-'),
-            target: document,
+            target: document.body,
+            type: 'mousemove',
             debug: false,
-            ...this.defaultOptions,
             ...options
         };
         instance.target = validateTarget(instance.target);
@@ -40,7 +33,7 @@ class Position{
         if(instance.type === 'scroll'){
             instance.handler = handleScroll.bind(instance);
         }else{
-            instance.handler = handleMouseMove.bind(instance);
+            initMouseMove(instance);
         }
 
         // register event listener
@@ -59,7 +52,15 @@ class Position{
         const result = this.instances.find(isMatched);
         if(result){
             const index = this.instances.findIndex(isMatched);
+
+            // remove event listener
             result.target.removeEventListener(instance.type, instance.handler);
+
+            if(result.scrollHandler){
+                window.removeEventListener('scroll', result.scrollHandler);
+            }
+
+            // remove from instances
             this.instances.splice(index, 1);
 
             return true;
