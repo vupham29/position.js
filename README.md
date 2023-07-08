@@ -1,4 +1,6 @@
-# Webpack-boilerplate
+# Position.js
+
+> Creating a library for getting cursor position or easy debugging visually ⌖
 
 ## Deployment
 
