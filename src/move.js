@@ -1,4 +1,4 @@
-import {debug} from "./debug";
+import {animateCursor, createDebugPanelAndGetCursor} from "./debug";
 
 /**
  * Logic
@@ -19,6 +19,11 @@ export function initMouseMove(instance){
     if(isScrollable){
         instance.scrollHandler = handleScroll.bind(instance);
         window.addEventListener('scroll', instance.scrollHandler);
+    }
+
+    // debug
+    if(instance.debug){
+        instance.cursor = createDebugPanelAndGetCursor(instance.target);
     }
 }
 
@@ -41,11 +46,6 @@ export function handleMouseMove(e){
     const xPosition = Math.max(0, Math.min(xPositionToBrowser - targetBox.left, targetBox.width));
     const yPosition = Math.max(0, Math.min(yPositionToBrowser - targetBox.top, targetBox.height));
 
-    // debug
-    if(this.debug){
-        debug(this.target, {x: xPosition, y: yPosition});
-    }
-
     // update to instance
     this.browserPosition = getPosition(targetBox, xPositionToBrowser, yPositionToBrowser);
     this.documentPosition = getPosition(targetBox, xPositionToDocument, yPositionToDocument);
@@ -53,6 +53,11 @@ export function handleMouseMove(e){
 
     // callback
     doCallbacks(this);
+
+    // debug
+    if(this.debug){
+        animateCursor(this.cursor, this.targetPosition);
+    }
 }
 
 
