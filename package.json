@@ -1,9 +1,9 @@
 {
-  "name": "webpack-boilerplate",
-  "project-name": "Webpack Boilerplate",
+  "name": "Position",
+  "project-name": "Position.js",
   "version": "0.0.1",
-  "description": "A boilerplate for creating a library with Javascript",
-  "main": "./dist/webpack-boilerplate.min.js",
+  "description": "Creating a library for getting cursor position or easy debugging visually ⌖",
+  "main": "./dist/Position.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config config/webpack.dev.js",
@@ -14,11 +14,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuquangpham/webpack-boilerplate.git"
+    "url": "https://github.com/vuquangpham/position.js"
   },
   "keywords": [
-    "webpack",
-    "boilerplate"
+    "position",
+    "javascript"
   ],
   "author": {
     "name": "Vu Pham",
@@ -27,9 +27,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vuquangpham/webpack-boilerplate/issues"
+    "url": "https://github.com/vuquangpham/position.js/issues"
   },
-  "homepage": "https://github.com/vuquangpham/webpack-boilerplate",
+  "homepage": "https://github.com/vuquangpham/position.js",
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
