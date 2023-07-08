@@ -22,10 +22,3 @@ export function validateTarget(target){
     }
     return target;
 }
-
-
-/**
- * Init options
- * */
-export function init(context){
-}

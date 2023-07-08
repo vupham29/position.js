@@ -1,5 +1,5 @@
 /**
- * Handle mouse move
+ * Mouse move handler
  * */
 export function handleMouseMove(e){
     const targetBox = this.target === document ? {
