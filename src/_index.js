@@ -1,6 +1,3 @@
-// style
-import './_index.scss';
-
 // script
 import {validateTarget} from "./helpers";
 import {uid} from "./utils";
@@ -30,9 +27,6 @@ class Position{
 
         // mousemove handler
         initMouseMove(instance);
-
-        // register event listener
-        instance.target.addEventListener(instance.type, instance.handler);
 
         // push to the instance
         this.instances.push(instance);

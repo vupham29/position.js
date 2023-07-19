@@ -17,9 +17,13 @@ export function initMouseMove(instance){
     // update position when scroll
     const isScrollable = instance.target === document.body || instance.target === document.documentElement;
     if(isScrollable){
+        console.log('scroll');
         instance.scrollHandler = handleScroll.bind(instance);
         window.addEventListener('scroll', instance.scrollHandler);
     }
+
+    // register event listener
+    instance.target.addEventListener(instance.type, instance.handler);
 
     // debug
     if(instance.debug){
@@ -52,7 +56,7 @@ export function handleMouseMove(e){
     this.targetPosition = getPosition(targetBox, xPosition, yPosition);
 
     // callback
-    doCallbacks(this);
+    doCallbacks(this, e);
 
     // debug
     if(this.debug){
@@ -75,7 +79,7 @@ function handleScroll(){
 /**
  * Do callbacks
  * */
-function doCallbacks(instance){
+function doCallbacks(instance, event){
     if(typeof instance.onUpdate === 'function'){
         instance.onUpdate({
             id: instance.id,
@@ -84,6 +88,7 @@ function doCallbacks(instance){
             browserPosition: instance.browserPosition,
             documentPosition: instance.documentPosition,
             targetPosition: instance.targetPosition,
+            event
         });
     }
 }
