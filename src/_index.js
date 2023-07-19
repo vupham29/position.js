@@ -4,8 +4,7 @@ import './_index.scss';
 // script
 import {validateTarget} from "./helpers";
 import {uid} from "./utils";
-import {handleMouseMove, initMouseMove} from "./move";
-import {handleScroll} from "./scroll";
+import {initMouseMove} from "./move";
 
 /**
  * Private class
@@ -30,11 +29,7 @@ class Position{
         if(!instance.target) return null;
 
         // mousemove handler
-        if(instance.type === 'scroll'){
-            instance.handler = handleScroll.bind(instance);
-        }else{
-            initMouseMove(instance);
-        }
+        initMouseMove(instance);
 
         // register event listener
         instance.target.addEventListener(instance.type, instance.handler);
