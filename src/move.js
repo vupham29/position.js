@@ -51,8 +51,14 @@ export function handleMouseMove(e){
     const yPosition = Math.max(0, Math.min(yPositionToBrowser - targetBox.top, targetBox.height));
 
     // update to instance
-    this.browserPosition = getPosition(targetBox, xPositionToBrowser, yPositionToBrowser);
-    this.documentPosition = getPosition(targetBox, xPositionToDocument, yPositionToDocument);
+    this.browserPosition = getPosition({
+        width: innerWidth,
+        height: innerHeight
+    }, xPositionToBrowser, yPositionToBrowser);
+    this.documentPosition = getPosition({
+        width: document.body.clientWidth,
+        height: document.body.clientHeight
+    }, xPositionToDocument, yPositionToDocument);
     this.targetPosition = getPosition(targetBox, xPosition, yPosition);
 
     // callback
