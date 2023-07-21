@@ -16,8 +16,15 @@ class Position{
         const instance = {
             id: uid('position-'),
             target: document.body,
-            type: 'mousemove',
             debug: false,
+
+            onMouseEnter: (self) => {
+            },
+            onMouseMove: (self) => {
+            },
+            onMouseLeave: (self) => {
+            },
+
             ...options
         };
         instance.target = validateTarget(instance.target);
@@ -25,13 +32,20 @@ class Position{
         // validate
         if(!instance.target) return null;
 
+        // destroy method
+        instance.destroy = this.destroy.bind(this, instance);
+
         // mousemove handler
         initMouseMove(instance);
 
         // push to the instance
         this.instances.push(instance);
 
-        return instance;
+        return {
+            id: instance.id,
+            target: instance.target,
+            destroy: instance.destroy
+        };
     }
 
     destroy(instance){
@@ -43,15 +57,13 @@ class Position{
             const index = this.instances.findIndex(isMatched);
 
             // remove event listener
-            result.target.removeEventListener(instance.type, instance.handler);
-
-            if(result.scrollHandler){
-                window.removeEventListener('scroll', result.scrollHandler);
-            }
+            result.target.removeEventListener('mouseenter', instance.handleMouseEnter);
+            result.target.removeEventListener('mouseleave', instance.handleMouseLeave);
+            result.target.removeEventListener('mousemove', instance.handleMouseMove);
+            window.removeEventListener('scroll', result.handleMousePositionWhenScroll);
 
             // remove from instances
             this.instances.splice(index, 1);
-
             return true;
         }
         return false;

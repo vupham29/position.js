@@ -102,3 +102,21 @@ export function createDOMElement(options = {
 export function mapNumber(number, inMin, inMax, outMin, outMax){
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }
+
+
+/**
+ * Convert position
+ * @param {object} targetBox
+ * @param {number} xPosition
+ * @param {number} yPosition
+ * @return {object}
+ * */
+export function getPosition(targetBox, xPosition, yPosition){
+    return {
+        x: xPosition,
+        y: yPosition,
+
+        xPercent: xPosition / targetBox.width,
+        yPercent: yPosition / targetBox.height
+    };
+};
