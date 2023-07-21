@@ -44,8 +44,8 @@ function handleMouseMove(e){
     const yPositionToBrowser = e.clientY;
 
     // Position to the top/left of the document
-    const xPositionToDocument = e.pageX;
-    const yPositionToDocument = e.pageY;
+    const xPositionToDocument = e.clientX + scrollX;
+    const yPositionToDocument = e.clientY + scrollY;
 
     // Position to the top/left of the currentTarget
     const xPosition = Math.max(0, Math.min(xPositionToBrowser - targetBox.left, targetBox.width));
