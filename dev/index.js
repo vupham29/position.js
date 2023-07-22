@@ -16,8 +16,16 @@ dataTitles.forEach(e => e.innerHTML = packageInfo["project-name"]);
 dataDescriptions.forEach(e => e.innerHTML = packageInfo.description);
 
 // code
-window.instance = Position.create({
-    onUpdate: (self) => {
-        console.log(self);
+const instance = Position.create({
+    target: '[data-position]',
+    debug: true,
+    onMouseMove: (self) => {
+        console.log('Move', self);
+    },
+    onMouseEnter: (self) => {
+        console.log('Enter', self);
+    },
+    onMouseLeave: (self) => {
+        console.log('leave', self);
     }
 });
